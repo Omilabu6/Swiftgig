@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SwiftGigSignUp from './components/auth/SwiftGigSignUp';
+import EmailVerifyPage from './components/auth/EmailVerifyPage';
+import TalentAuth from './components/auth/TalentAuth';
+import ClientAuth from './components/auth/ClientAuth';
 import RegisterFlow1 from './components/auth/RegisterFlow1';
 import RegisterFlow2 from './components/auth/RegisterFlow2';
 
@@ -26,6 +29,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SwiftGigSignUp />} />
+        <Route path="/verify" element={<EmailVerifyPage />} />
+        <Route path="/talent-auth" element={<TalentAuth />} />
+        <Route path="/client-auth" element={<ClientAuth />} />
         <Route path="/register/client" element={<RegisterFlow1 />} />
         <Route path="/register/talent" element={<RegisterFlow2 />} />
       </Routes>

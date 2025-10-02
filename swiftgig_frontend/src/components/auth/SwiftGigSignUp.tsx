@@ -131,9 +131,9 @@ export default function SwiftGigSignUp() {
         <button
           onClick={handleRegister}
           disabled={!selectedRole}
-          className={`px-16 py-3 rounded-md font-medium transition-all border-2 cursor-pointer ${
+          className={`px-16 py-3 rounded-md font-medium transition-all border-2 ${
             selectedRole
-              ? 'bg-[#622578] border-[#622578] text-white hover:bg-[#622578]/90 hover:border-[#622578]/90'
+              ? 'bg-[#622578] border-[#622578] text-white hover:bg-[#622578]/90 hover:border-[#622578]/90 cursor-pointer'
               : 'bg-gray-700 border-gray-700 text-gray-400 cursor-not-allowed'
           }`}
         >

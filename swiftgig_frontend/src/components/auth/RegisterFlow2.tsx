@@ -6,7 +6,6 @@ export default function RegisterFlow2() {
     lastName: '',
     email: '',
     password: '',
-    country: 'Nigeria',
     sendEmails: true,
     agreeToTerms: false
   });
@@ -30,7 +29,7 @@ export default function RegisterFlow2() {
   };
 
   const handleClientClick = () => {
-    window.location.href = '/register/client';
+    window.location.href = '/signup';
   };
 
   return (
@@ -156,26 +155,6 @@ export default function RegisterFlow2() {
             </div>
           </div>
 
-          {/* Country */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-black mb-2">
-              Country
-            </label>
-            <select
-              name="country"
-              value={formData.country}
-              onChange={handleInputChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#622578] focus:ring-1 focus:ring-[#622578] appearance-none bg-white"
-            >
-              <option value="Nigeria">Nigeria</option>
-              <option value="United States">United States</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Canada">Canada</option>
-              <option value="Ghana">Ghana</option>
-              <option value="Kenya">Kenya</option>
-            </select>
-          </div>
-
           {/* Checkboxes */}
           <div className="space-y-3 mb-6">
             <label className="flex items-start gap-3 cursor-pointer">
@@ -224,7 +203,7 @@ export default function RegisterFlow2() {
             disabled={!formData.agreeToTerms}
             className={`w-full py-3 rounded-full font-medium transition-all ${
               formData.agreeToTerms
-                ? 'bg-[#622578] text-white hover:bg-[#622578]/90'
+                ? 'bg-[#622578] text-white hover:bg-[#622578]/90 cursor-pointer'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >
