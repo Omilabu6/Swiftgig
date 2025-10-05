@@ -362,19 +362,34 @@ const TalentAuth = () => {
 
               <div className="mt-8">
                 <label className="block text-white font-medium mb-3">Your skills</label>
-                <input
-                  type="text"
-                  placeholder="Enter skills here"
-                  value={formData.customSkill}
-                  onChange={(e) => handleInputChange('customSkill', e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter' && formData.customSkill.trim()) {
-                      handleSkillAdd(formData.customSkill.trim());
-                      handleInputChange('customSkill', '');
-                    }
-                  }}
-                  className="w-full md:w-2/3 px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#622578]"
-                />
+                <div className="flex gap-2 w-full md:w-2/3">
+                  <input
+                    type="text"
+                    placeholder="Enter skills here"
+                    value={formData.customSkill}
+                    onChange={(e) => handleInputChange('customSkill', e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter' && formData.customSkill.trim()) {
+                        e.preventDefault();
+                        handleSkillAdd(formData.customSkill.trim());
+                        handleInputChange('customSkill', '');
+                      }
+                    }}
+                    className="flex-1 px-4 py-3 bg-transparent border border-gray-600 rounded-lg text-white focus:outline-none focus:border-[#622578]"
+                  />
+                  <button
+                    onClick={() => {
+                      if (formData.customSkill.trim()) {
+                        handleSkillAdd(formData.customSkill.trim());
+                        handleInputChange('customSkill', '');
+                      }
+                    }}
+                    disabled={!formData.customSkill.trim() || formData.skills.length >= 15}
+                    className="px-6 py-3 bg-[#622578] text-white rounded-lg font-medium hover:bg-[#622578]/90 transition-all disabled:bg-gray-600 disabled:cursor-not-allowed"
+                  >
+                    Add
+                  </button>
+                </div>
                 <p className="text-gray-500 text-sm mt-2">Max 15 skills</p>
 
                 {/* Selected Skills */}
