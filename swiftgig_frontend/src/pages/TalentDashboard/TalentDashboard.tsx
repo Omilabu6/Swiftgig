@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { Home, Briefcase, BarChart3, Settings, User, ChevronDown, ChevronRight, PlusCircle, FileText, LogOut } from 'lucide-react';
+import {
+  Home,
+  Briefcase,
+  BarChart3,
+  Settings,
+  User,
+  ChevronDown,
+  ChevronRight,
+  PlusCircle,
+  FileText,
+  LogOut,
+} from 'lucide-react';
 
 export default function TalentDashboard() {
   const [isGigsOpen, setIsGigsOpen] = useState(false);
@@ -10,16 +21,16 @@ export default function TalentDashboard() {
 
   const menuItems = [
     { id: 'home', label: 'Home', icon: Home, path: '/talent-dashboard' },
-    { 
-      id: 'gigs', 
-      label: 'Gigs', 
-      icon: Briefcase, 
+    {
+      id: 'gigs',
+      label: 'Gigs',
+      icon: Briefcase,
       hasDropdown: true,
       path: '',
       subItems: [
         { id: 'Gigs', label: 'Gigs', icon: PlusCircle, path: '/talent-dashboard/gigs' },
-        { id: 'your-gigs', label: 'Your gigs', icon: FileText, path: '/talent-dashboard/your-gigs' }
-      ]
+        { id: 'your-gigs', label: 'Your gigs', icon: FileText, path: '/talent-dashboard/your-gigs' },
+      ],
     },
     { id: 'voting-poll', label: 'Voting poll', icon: BarChart3, path: '/talent-dashboard/voting-poll' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/talent-dashboard/settings' },
@@ -37,40 +48,26 @@ export default function TalentDashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-[#1a1a1a] relative">
+    <div className="flex h-screen  bg-gradient-to-br from-[#2B0A2F] via-[#2B0A2F] to-[#0D0012] relative">
       {/* Sidebar */}
-      <div className="w-64 bg-[#0f0f0f] border-r border-gray-800 flex flex-col relative z-10">
-        {/* User Profile Section */}
-        <div className="p-4 border-b border-gray-800">
-          <button 
-            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-            className="w-full flex items-center space-x-3 hover:bg-gray-800 p-2 rounded-lg transition-colors"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#622578] flex items-center justify-center text-white font-semibold">
-              U
-            </div>
-            <div className="flex-1 text-left">
-              <h3 className="text-white font-medium text-sm">User</h3>
-              <p className="text-gray-400 text-xs">FREE</p>
-            </div>
-            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isUserMenuOpen ? 'rotate-180' : ''}`} />
-          </button>
-        </div>
+      <aside className="w-full  md:w-64 bg-[#1A031F]/60 rounded-2xl flex flex-col justify-between ">
+        {/* Navigation */}
+        <nav className="space-y-6 p-5">
+          <h1 className="text-xl tracking-[0.1em] text-center text-white mb-4">SWIFTGIG</h1>
+          <img src="/Vector 6.svg" alt="" />
 
-        {/* Navigation Menu */}
-        <nav className="flex-1 py-4 overflow-y-auto">
-          <div className="space-y-1 px-2">
+          <ul className="space-y-2">
             {menuItems.map((item) => (
-              <div key={item.id}>
+              <li key={item.id}>
                 <button
                   onClick={() => handleNavigation(item)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                  className={`w-full flex items-center justify-between p-3 rounded-xl text-sm transition ${
                     isActive(item.path)
-                      ? 'bg-[#622578] text-white'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                      ? 'bg-[#000000] text-purple-200 '
+                      : 'text-purple-200 hover:bg-[#2B0A2F]/30 hover:text-white'
                   }`}
                 >
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center gap-3">
                     <item.icon className="w-5 h-5" />
                     <span className="font-medium">{item.label}</span>
                   </div>
@@ -87,96 +84,94 @@ export default function TalentDashboard() {
 
                 {/* Dropdown Menu */}
                 {item.hasDropdown && isGigsOpen && (
-                  <div className="ml-4 mt-1 space-y-1">
+                  <ul className="ml-8 mt-1 space-y-1">
                     {item.subItems.map((subItem) => (
-                      <button
-                        key={subItem.id}
-                        onClick={() => navigate(subItem.path)}
-                        className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-sm transition-colors ${
-                          isActive(subItem.path)
-                            ? 'bg-[#622578] text-white'
-                            : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                        }`}
-                      >
-                        <subItem.icon className="w-4 h-4" />
-                        <span>{subItem.label}</span>
-                      </button>
+                      <li key={subItem.id}>
+                        <button
+                          onClick={() => navigate(subItem.path)}
+                          className={`w-full flex items-center gap-3 p-2 rounded-lg text-sm transition ${
+                            isActive(subItem.path)
+                              ? 'bg-[#4B1656] text-white'
+                              : 'text-purple-300 hover:bg-[#2B0A2F]/40 hover:text-white'
+                          }`}
+                        >
+                          <subItem.icon className="w-4 h-4" />
+                          <span>{subItem.label}</span>
+                        </button>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </nav>
 
-        {/* Upgrade Section */}
-        <div className="p-4 border-t border-gray-800">
-          <div className="bg-gray-800 rounded-lg p-4 text-center">
-            <p className="text-gray-300 text-sm mb-3">
-              Ready to go beyond this free plan? Upgrade for premium features.
-            </p>
-            <button className="w-full bg-[#622578] hover:bg-[#7a2e94] text-white font-medium py-2 px-4 rounded-lg transition-colors">
-              View plans
-            </button>
+        {/* User Info Section */}
+        <div className="bg-[#2B0A2F]/40 p-4 rounded-xl m-4">
+          <p className="text-sm text-purple-200">Talent Account</p>
+          <div
+            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+            className="flex items-center gap-2 mt-3 cursor-pointer"
+          >
+            <div className="bg-[#4B1656] w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold">
+              U
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-white">User Name</p>
+              <p className="text-xs text-purple-300">Wallet: ****3950</p>
+            </div>
           </div>
         </div>
-      </div>
+      </aside>
 
-      {/* Main Content Area */}
-      <div className="flex-1 overflow-auto">
+      {/* Main Content */}
+      <div className="flex-1 overflow-auto rounded-2xl p-6">
         <Outlet />
       </div>
 
       {/* User Dropdown Modal */}
       {isUserMenuOpen && (
         <>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/20 z-40"
+          <div
+            className="fixed inset-0 bg-black/40 z-40"
             onClick={() => setIsUserMenuOpen(false)}
           ></div>
 
-          {/* Modal */}
-          <div className="fixed top-20 left-4 w-72 bg-white rounded-xl shadow-2xl z-50 border border-gray-200">
-            {/* Workspaces Section */}
-            <div className="p-4">
-              <p className="text-xs text-gray-500 font-semibold mb-3">TALENT ACCOUNT</p>
-              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 rounded-full bg-[#622578] flex items-center justify-center text-white text-xs font-semibold">
-                    U
-                  </div>
-                  <div>
-                    <p className="text-gray-900 text-sm font-medium">User's Workspace</p>
-                    <p className="text-gray-500 text-xs">FREE</p>
-                  </div>
-                </div>
-                <button 
-                  onClick={() => {
-                    navigate('/client-dashboard/profile');
-                    setIsUserMenuOpen(false);
-                  }}
-                  className="px-3 py-1.5 text-xs font-medium text-[#622578] border border-[#622578] rounded-lg hover:bg-[#622578] hover:text-white transition-colors"
-                >
-                  Talent
-                </button>
-              </div>
-            </div>
+          <div className="fixed bottom-8 left-8 w-72 bg-[#1A031F] rounded-xl shadow-2xl z-50 border border-[#2B0A2F]/70 p-4 text-white">
+            <p className="text-xs text-purple-300 mb-3 font-semibold">ACCOUNT</p>
 
-            {/* Logout Button */}
-            <div className="p-4 border-t border-gray-200">
-              <button 
+            <div className="flex items-center justify-between p-3 bg-[#2B0A2F]/50 rounded-lg hover:bg-[#2B0A2F]/70 transition">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-[#4B1656] flex items-center justify-center text-xs font-semibold">
+                  U
+                </div>
+                <div>
+                  <p className="text-sm font-medium">User's Workspace</p>
+                  <p className="text-xs text-purple-300">FREE</p>
+                </div>
+              </div>
+              <button
                 onClick={() => {
-                  // Add logout logic here
-                  console.log('Logging out...');
+                  navigate('/client-dashboard/profile');
                   setIsUserMenuOpen(false);
                 }}
-                className="w-full px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors text-left flex items-center space-x-2"
+                className="px-3 py-1.5 text-xs font-medium text-white bg-[#4B1656] rounded-lg hover:bg-[#6B2282] transition"
               >
-                <LogOut className="w-4 h-4" />
-                <span>Logout</span>
+                Switch
               </button>
             </div>
+
+            <button
+              onClick={() => {
+                console.log('Logging out...');
+                setIsUserMenuOpen(false);
+              }}
+              className="w-full mt-4 px-4 py-2 text-sm font-medium text-red-400 hover:bg-red-500/10 rounded-lg transition flex items-center gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
+            </button>
           </div>
         </>
       )}
