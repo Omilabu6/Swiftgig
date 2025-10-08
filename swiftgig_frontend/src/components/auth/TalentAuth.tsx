@@ -84,7 +84,7 @@ const TalentAuth = () => {
     'UI/UX Design',
     'Graphic Design',
     'Content Writing',
-    'SEO',
+    'Transcription',
     'Digital Marketing',
     'Video Editing',
     'Data Entry',

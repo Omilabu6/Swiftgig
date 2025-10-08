@@ -9,9 +9,9 @@ import ClientDashboard from './pages/ClientDashboard/ClientDashboard';
 import DashboardHome from './pages/ClientDashboard/DashboardHome';
 import TalentDashboard from './pages/TalentDashboard/TalentDashboard';
 import TalentDashboardHome from './pages/TalentDashboard/TalentDashboardHome';
-// import CreateGigs from './pages/ClientDashboard/CreateGigs';
-// import YourGigs from './pages/ClientDashboard/YourGigs';
-// import VotingPoll from './pages/ClientDashboard/VotingPoll';
+import CreateGigs from './pages/ClientDashboard/CreateGigs';
+import YourGigs from './pages/ClientDashboard/YourGigs';
+import Disputes from './pages/ClientDashboard/Disputes';
 // import DashboardSettings from './pages/ClientDashboard/DashboardSettings';
 // import DashboardProfile from './pages/ClientDashboard/DashboardProfile';
 
@@ -47,9 +47,9 @@ export default function App() {
         {/* Client Dashboard Routes */}
         <Route path="/client-dashboard/*" element={<ClientDashboard />}>
           <Route index element={<DashboardHome />} />
-          {/* <Route path="create-gigs" element={<CreateGigs />} /> */}
-          {/* <Route path="your-gigs" element={<YourGigs />} /> */}
-          {/* <Route path="voting-poll" element={<VotingPoll />} /> */}
+          <Route path="create-gigs" element={<CreateGigs />} />
+          <Route path="your-gigs" element={<YourGigs />} /> 
+          <Route path="disputes" element={<Disputes />} />
           {/* <Route path="settings" element={<DashboardSettings />} /> */}
           {/* <Route path="profile" element={<DashboardProfile />} /> */}
         </Route>

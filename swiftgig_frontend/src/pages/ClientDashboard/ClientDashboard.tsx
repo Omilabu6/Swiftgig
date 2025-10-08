@@ -21,7 +21,7 @@ export default function ClientDashboard() {
         { id: 'your-gigs', label: 'Your gigs', icon: FileText, path: '/client-dashboard/your-gigs' }
       ]
     },
-    { id: 'voting-poll', label: 'Voting poll', icon: BarChart3, path: '/client-dashboard/voting-poll' },
+    { id: 'Disputes', label: 'disputes', icon: BarChart3, path: '/client-dashboard/disputes' },
     { id: 'settings', label: 'Settings', icon: Settings, path: '/client-dashboard/settings' },
     { id: 'profile', label: 'Profile', icon: User, path: '/client-dashboard/profile' },
   ];
