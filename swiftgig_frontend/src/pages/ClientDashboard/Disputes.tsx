@@ -92,12 +92,11 @@ export default function Disputes() {
       votesForTalent: 15,
       votesForClient: 5,
       voters: ['0x999...888', '0x777...666'],
-      startTime: '8/26/2025, 1:15:30 PM',
-      endTime: '8/28/2025, 1:15:30 PM',
+      startTime: '10/07/2025, 9:00:00 AM',
+      endTime: '10/10/2025, 9:00:00 AM', //
       resolved: false,
       winner: null,
-      currentUserVoted: true,
-      userVote: 'talent'
+      currentUserVoted: false,   
     }
   ];
 
