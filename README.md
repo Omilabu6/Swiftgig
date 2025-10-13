@@ -1,8 +1,8 @@
 # SwiftGig
 
 [![License](https://img.shields.io/github/license/Kars07/SwiftGig)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/Kars07/SwiftGig)](https://github.com/Kars07/SwiftGig/issues)
-[![Stars](https://img.shields.io/github/stars/Kars07/SwiftGig)](https://github.com/Kars07/SwiftGig/stargazers)
+[![Issues](https://img.shields.io/github/issues/Kars07/SwiftGig)](https://github.com/Omilabu6/Swiftgig/issues)
+[![Stars](https://img.shields.io/github/stars/Kars07/SwiftGig)](https://github.com/Omilabu6/Swiftgig/stargazers)
 ![Escrow Powered](https://img.shields.io/badge/Escrow-Powered-blueviolet)
 
 **SwiftGig – Escrow Powered Freelance Platform**
