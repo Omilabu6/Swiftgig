@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SwiftGigSignUp from './components/auth/SwiftGigSignUp';
+import Login from './components/auth/Login';
 import EmailVerifyPage from './components/auth/EmailVerifyPage';
 import TalentAuth from './components/auth/TalentAuth';
 import ClientAuth from './components/auth/ClientAuth';
@@ -16,8 +17,8 @@ import Gigs from './pages/TalentDashboard/Gigs'
 import VotingPoll from './pages/TalentDashboard/VotingPoll'
 import DashboardProfile from './pages/TalentDashboard/DashboardProfile'
 import DashboardSettings from './pages/TalentDashboard/DashboardSettings'
-// import DashboardSettings from './pages/ClientDashboard/DashboardSettings';
-// import DashboardProfile from './pages/ClientDashboard/DashboardProfile';
+import ClientProfile from './pages/ClientDashboard/ClientProfile';
+import ClientSettings from './pages/ClientDashboard/ClientSettings';
 
 function LandingPage() {
   return (
@@ -41,6 +42,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<SwiftGigSignUp />} />
         <Route path="/verify" element={<EmailVerifyPage />} />
         <Route path="/talent-auth" element={<TalentAuth />} />
@@ -54,8 +56,8 @@ export default function App() {
           <Route path="create-gigs" element={<CreateGigs />} />
           <Route path="your-gigs" element={<YourGigs />} /> 
           <Route path="disputes" element={<Disputes />} />
-          {/* <Route path="settings" element={<DashboardSettings />} /> */}
-          {/* <Route path="profile" element={<DashboardProfile />} /> */}
+          <Route path="settings" element={<ClientSettings />} />
+          <Route path="profile" element={<ClientProfile />} />
         </Route>
 
         {/* Talent Dashboard Routes */}

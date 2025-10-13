@@ -110,14 +110,19 @@ export default function ClientDashboard() {
         </nav>
 
         {/* Upgrade Section */}
-        <div className="p-4 border-t border-gray-800">
-          <div className="bg-gray-800 rounded-lg p-4 text-center">
-            <p className="text-gray-300 text-sm mb-3">
-              Ready to go beyond this free plan? Upgrade for premium features.
-            </p>
-            <button className="w-full bg-[#622578] hover:bg-[#7a2e94] text-white font-medium py-2 px-4 rounded-lg transition-colors">
-              View plans
-            </button>
+        <div className="p-3 mx-2 mb-3 bg-[#622578]/10 border border-[#622578]/30 rounded-lg">
+          <p className="text-xs text-gray-400 mb-2">Client Account</p>
+          <div
+            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+          >
+            <div className="bg-[#622578] w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+              U
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium text-white truncate">User Name</p>
+              <p className="text-xs text-gray-400">Wallet: ****3950</p>
+            </div>
           </div>
         </div>
       </div>

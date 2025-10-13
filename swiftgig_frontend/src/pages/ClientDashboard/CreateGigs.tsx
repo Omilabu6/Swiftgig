@@ -105,18 +105,53 @@ export default function CreateGigs() {
   return (
     <div className="min-h-screen bg-[#1a1a1a] p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Create Gigs</h1>
-            <p className="text-gray-400">Post new gigs and manage talent applications</p>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-white mb-2">Create Gigs</h1>
+              <p className="text-gray-400">Post new gigs and manage talent applications</p>
+            </div>
+            <div className="relative w-96">
+              <input
+                type="text"
+                placeholder="Search gigs..."
+                className="w-full bg-[#0f0f0f] border border-gray-800 rounded-lg pl-4 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#622578] transition-colors"
+              />
+            </div>
           </div>
-          <button
-            onClick={() => setIsCreateModalOpen(true)}
-            className="flex items-center space-x-2 bg-[#622578] hover:bg-[#7a2e94] text-white font-semibold px-6 py-3 rounded-lg transition-colors"
-          >
-            <Plus className="w-5 h-5" />
-            <span>Create New Gig</span>
-          </button>
+
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 flex items-center justify-between">
+              <div>
+                <p className="text-gray-400 text-sm mb-1">Gigs Created</p>
+                <p className="text-4xl font-bold text-white">{gigs.length}</p>
+              </div>
+              <div className="w-12 h-12 bg-[#622578]/20 rounded-lg flex items-center justify-center">
+                <Plus className="w-6 h-6 text-[#622578]" />
+              </div>
+            </div>
+
+            <div className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 flex items-center justify-between">
+              <div>
+                <p className="text-gray-400 text-sm mb-1">Active Gigs</p>
+                <p className="text-4xl font-bold text-white">{gigs.length}</p>
+              </div>
+              <div className="w-12 h-12 bg-[#622578]/20 rounded-lg flex items-center justify-center">
+                <Star className="w-6 h-6 text-[#622578]" />
+              </div>
+            </div>
+
+            <div className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 flex items-center justify-between">
+              <div>
+                <p className="text-gray-400 text-sm mb-1">Credit Score</p>
+                <p className="text-4xl font-bold text-white">300</p>
+              </div>
+              <div className="w-12 h-12 bg-[#622578]/20 rounded-lg flex items-center justify-center">
+                <Users className="w-6 h-6 text-[#622578]" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {successMessage && (
@@ -142,46 +177,57 @@ export default function CreateGigs() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {gigs.map((gig) => (
-              <div key={gig.id} className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 hover:border-[#622578] transition-colors">
-                <h3 className="text-xl font-semibold text-white mb-2">{gig.name}</h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-2">{gig.description}</p>
-                
-                <div className="mb-4 bg-[#622578]/20 border border-[#622578] rounded-lg p-3">
-                  <p className="text-xs text-gray-400 mb-1">Payment Amount</p>
-                  <p className="text-2xl font-bold text-[#622578]">₦{gig.amount.toLocaleString()}</p>
-                </div>
-                
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center space-x-2 text-sm text-gray-400">
-                    <Calendar className="w-4 h-4" />
-                    <span>Deadline: {gig.deadline}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm text-gray-400">
-                    <Users className="w-4 h-4" />
-                    <span>Talents needed: {gig.talentsNeeded}</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm text-gray-400">
-                    <Clock className="w-4 h-4" />
-                    <span>Available for: {gig.timeframe} days</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                  <span className="text-sm text-gray-400">{gig.applicants} applicants</span>
-                  <button
-                    onClick={() => {
-                      setSelectedGig(gig);
-                      setIsWaitlistModalOpen(true);
-                    }}
-                    className="bg-[#622578] hover:bg-[#7a2e94] text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-                  >
-                    View Waitlist
-                  </button>
-                </div>
+          <div className="mt-10">
+            {/* 🔹 Section Header for Gigs Created */}
+            <div className="flex items-center mb-6">
+              <div className="bg-[#622578]/20 border border-[#622578]/40 text-[#622578] font-semibold px-5 py-2 rounded-full text-sm uppercase tracking-wide">
+                Gigs Created
               </div>
-            ))}
+              <div className="flex-1 border-t border-gray-800 ml-4"></div>
+            </div>
+
+            {/* 🔹 Gigs List */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {gigs.map((gig) => (
+                <div key={gig.id} className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 hover:border-[#622578] transition-colors">
+                  <h3 className="text-xl font-semibold text-white mb-2">{gig.name}</h3>
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">{gig.description}</p>
+                  
+                  <div className="mb-4 bg-[#622578]/20 border border-[#622578] rounded-lg p-3">
+                    <p className="text-xs text-gray-400 mb-1">Payment Amount</p>
+                    <p className="text-2xl font-bold text-[#622578]">₦{gig.amount.toLocaleString()}</p>
+                  </div>
+                  
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center space-x-2 text-sm text-gray-400">
+                      <Calendar className="w-4 h-4" />
+                      <span>Deadline: {gig.deadline}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-gray-400">
+                      <Users className="w-4 h-4" />
+                      <span>Talents needed: {gig.talentsNeeded}</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm text-gray-400">
+                      <Clock className="w-4 h-4" />
+                      <span>Available for: {gig.timeframe} days</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+                    <span className="text-sm text-gray-400">{gig.applicants} applicants</span>
+                    <button
+                      onClick={() => {
+                        setSelectedGig(gig);
+                        setIsWaitlistModalOpen(true);
+                      }}
+                      className="bg-[#622578] hover:bg-[#7a2e94] text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                    >
+                      View Waitlist
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
@@ -336,44 +382,41 @@ export default function CreateGigs() {
                 </button>
               </div>
 
-              <div className="p-6 space-y-4">
-                {mockTalents.map((talent) => (
-                  <div key={talent.id} className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-4 hover:border-[#622578] transition-colors">
-                    <div className="flex items-start justify-between flex-wrap gap-4">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 rounded-full bg-[#622578] flex items-center justify-center text-white font-semibold flex-shrink-0">
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {mockTalents.map((talent) => (
+                    <div key={talent.id} className="bg-[#1a1a1a] border border-gray-800 rounded-lg p-4 flex flex-col space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 rounded-full bg-[#622578]/20 flex items-center justify-center text-[#622578] font-semibold">
                           {talent.avatar}
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-white mb-1">{talent.name}</h3>
-                          <p className="text-sm text-gray-400 mb-2">{talent.experience}</p>
-                          <div className="flex items-center space-x-2">
-                            <Star className="w-4 h-4 text-yellow-500" />
-                            <span className={`text-sm font-semibold ${getCreditScoreColor(talent.creditScore)}`}>
-                              Credit Score: {talent.creditScore}
-                            </span>
-                          </div>
+                        <div>
+                          <p className="text-white font-medium">{talent.name}</p>
+                          <p className="text-xs text-gray-400">{talent.experience}</p>
                         </div>
+                      </div>
+                      <div>
+                        <p className={`text-sm font-semibold ${getCreditScoreColor(talent.creditScore)}`}>
+                          Credit Score: {talent.creditScore}
+                        </p>
                       </div>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleApprove(talent.name)}
-                          className="flex items-center space-x-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
+                          className="flex-1 bg-green-600/20 border border-green-600 text-green-400 font-medium py-2 rounded-lg hover:bg-green-600/30 transition-colors"
                         >
-                          <CheckCircle className="w-4 h-4" />
-                          <span>Approve</span>
+                          Approve
                         </button>
                         <button
                           onClick={() => handleReject(talent.name)}
-                          className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+                          className="flex-1 bg-red-600/20 border border-red-600 text-red-400 font-medium py-2 rounded-lg hover:bg-red-600/30 transition-colors"
                         >
-                          <XCircle className="w-4 h-4" />
-                          <span>Reject</span>
+                          Reject
                         </button>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>

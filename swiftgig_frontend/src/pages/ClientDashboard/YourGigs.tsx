@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Briefcase, Calendar, Users, Clock, DollarSign, CheckCircle, XCircle, AlertCircle, X } from 'lucide-react';
+import { Briefcase, Calendar, Users, Clock, DollarSign, CheckCircle, XCircle, AlertCircle, X, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface Gig {
   id: number;
@@ -55,6 +56,7 @@ export default function YourGigs() {
   const [selectedGig, setSelectedGig] = useState<Gig | null>(null);
   const [rejectReason, setRejectReason] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleApproveClick = (gig: Gig) => {
     setSelectedGig(gig);
@@ -76,9 +78,7 @@ export default function YourGigs() {
   };
 
   const confirmRejection = () => {
-    if (!rejectReason.trim()) {
-      return;
-    }
+    if (!rejectReason.trim()) return;
     if (selectedGig) {
       setSuccessMessage('Your rejection has been submitted. A conflict poll may be raised within 2 days. If no poll is activated, your payment will be refunded.');
       setIsRejectModalOpen(false);
@@ -104,12 +104,34 @@ export default function YourGigs() {
     );
   };
 
+  const filteredGigs = gigs.filter(gig =>
+    gig.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    gig.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-[#1a1a1a] p-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Your Gigs</h1>
-          <p className="text-gray-400">Track and manage your active and completed gigs</p>
+          <p className="text-gray-400 mb-6">Track and manage your active and completed gigs</p>
+
+          {/* 🔍 Animated Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            className="relative w-full md:w-[400px]"
+          >
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Search gigs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[#0f0f0f] border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:border-[#622578] transition-all duration-300 placeholder-gray-500"
+            />
+          </motion.div>
         </div>
 
         {successMessage && (
@@ -119,17 +141,17 @@ export default function YourGigs() {
           </div>
         )}
 
-        {gigs.length === 0 ? (
+        {filteredGigs.length === 0 ? (
           <div className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-12 text-center">
             <div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
               <Briefcase className="w-10 h-10 text-gray-600" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2">No active gigs</h3>
-            <p className="text-gray-400">Your gigs will appear here once talents start working on them</p>
+            <h3 className="text-xl font-semibold text-white mb-2">No gigs found</h3>
+            <p className="text-gray-400">Try adjusting your search query</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {gigs.map((gig) => (
+            {filteredGigs.map((gig) => (
               <div key={gig.id} className="bg-[#0f0f0f] border border-gray-800 rounded-xl p-6 hover:border-[#622578] transition-colors">
                 <div className="flex items-start justify-between mb-4">
                   <div>
